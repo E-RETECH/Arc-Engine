@@ -1,17 +1,18 @@
+
 ### ARC ENGINE
     là một game engine trên nền tảng arduino R3 chipset ATmega328 
-## một namespace chứa các class của Game Engine cho việc gọi xây dựng game bên trong ino file
+## Một namespace chứa các class của Game Engine cho việc gọi xây dựng game bên trong ino file
 
 **
 >  Game engine bao gồm nhiều class nhưng hiện tại cần 3 class chính: GameObject, Scene, Compoment
 
 ## Class GameObject
 	 Class game Object chứa các thuộc tính cơ bản của một đối tượng như Position, HP, Damge, ... phụ thuộc vào game mà các Game Developer mong muốn.
-	Tương tác được với các compoment (* Chưa nghĩ ra giải pháp ).
+	Tương tác được với các compoment.
 	
-Sprite: một hàm đọc file ảnh bmp xuất ra mảng spriteData để render ra màn hình.
-Position: chứa poisition.x, position.y (Global Position hoặc View Positon)
-Compoment interactor: một hoặc nhiều call back cho phép thêm các compoment tương tác với game object như Collision, Gravity, Input Controller, Audio,... 
+ - Sprite: class object bit map image
+ - Position: chứa poisition.x, position.y (Global Position hoặc View Positon)
+ - Compoment interactor: một hoặc nhiều call back cho phép thêm các compoment tương tác với game object như Collision, Gravity, Input Controller, Audio,... 
 
 ## Class Camera
 
