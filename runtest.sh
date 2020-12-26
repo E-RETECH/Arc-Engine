@@ -3,13 +3,14 @@
 GRAY='\033[1;30m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; NC='\033[0m'
 BOLD='\e[1m'
+SCRIPTPATH="$( cd "$(dirname "$0")/" >/dev/null 2>&1 ; pwd -P )"
 
 stucked=()
 total=0
 
 selected_file=$1
 
-test_files=$(find $(pwd) | grep "test.*.cpp")
+test_files=$(find $(pwd) | grep "test.*.cpp" | grep -v ".w.$")
 
 printf "" > test_output
 
@@ -25,10 +26,10 @@ for test in $test_files; do
     bname=$(basename ${test})
 
     if [ "$bname" = "$selected_file" ]; then
-	g++ $bname -o ./$bname.out && ./$bname.out && rm ./a.out
+	g++ $bname -o ./$bname.out -I$SCRIPTPATH && ./$bname.out && rm ./$bname.out
 	return_code=$?
     else
-	g++ $bname -o ./a.out && ./a.out >> $current_dict/test_output && rm ./a.out
+	g++ $bname -o ./$bname.out -I$SCRIPTPATH && ./$bname.out >> $current_dict/test_output && rm ./$bname.out
 	return_code=$?
     fi
 
@@ -48,3 +49,12 @@ for file in ${stucked[@]}; do
     printf "${YELLOW}\t➤  $file${NC}\n"
 done
 echo
+
+while true; do
+    read -p "Do you wanna keep output of test processes? [Yy/Nn] " yn
+    case $yn in
+        [Yy]* ) exit;;
+        [Nn]* ) rm test_output; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
