@@ -1,3 +1,6 @@
+#ifndef ARC_ENGINE
+#define ARC_ENGINE
+
 namespace arc{
     class Vector2{
     public:
@@ -37,3 +40,5 @@ namespace arc{
         }
     };
 }
+
+#endif /*ARC_ENGINE*/
